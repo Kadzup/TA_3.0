@@ -173,7 +173,7 @@
   <component name="RunManager" selected="Application.Interface">
     <configuration name="Interface" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Controller.Interface" />
-      <module name="TA2.0" />
+      <module name="TA_3.0" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="Controller.*" />
@@ -186,7 +186,7 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="TA2.0" />
+      <module name="TA_3.0" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
@@ -196,7 +196,7 @@
     </configuration>
     <configuration name="serializDeserialiIO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="IO.serializDeserialiIO" />
-      <module name="TA2.0" />
+      <module name="TA_3.0" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="IO.*" />
