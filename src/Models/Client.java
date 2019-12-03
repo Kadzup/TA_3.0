@@ -5,7 +5,7 @@ import java.time.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Client {
+public class Client implements Comparable<Client>{
     private String fName;
     private String lName;
 
@@ -75,6 +75,11 @@ public class Client {
     @JsonIgnoreProperties
     public String getClientContact(){
         return("Client: "+getFullName()+"\nContact: " + getPhone() + ", " + getEmail());
+    }
+
+    @Override
+    public int compareTo(Client o) {
+        return this.email.compareTo(o.email);
     }
 
     public static final class Builder {
