@@ -32,7 +32,7 @@ public class serializDeserialiIO {
     }
 
     /*  JSON parser BEGIN     */
-    public <T> void SserializeJson(T obj, String pathToRoot) {
+    public <T> String SserializeJson(T obj, String pathToRoot) {
         this.lastPath = pathToRoot + obj.getClass().getSimpleName().toLowerCase() + "_object-" + Math.abs(new Random().nextLong()) + ".json";
         File file = new File(this.lastPath);
         ObjectMapper mapper = new ObjectMapper();
@@ -45,9 +45,11 @@ public class serializDeserialiIO {
             file.createNewFile();
             mapper.writeValue(file, obj);
             System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj));
+            return mapper.writeValueAsString(obj);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return "";
     }
 
     public Client DeserializeJson(Client obj, String pathToFile){
@@ -186,7 +188,7 @@ public class serializDeserialiIO {
 
 
     /*  XML parser  BEGIN   */
-    public <T> void SerializeXml(T obj, String pathToRoot) throws IOException {
+    public <T> String SerializeXml(T obj, String pathToRoot) throws IOException {
         this.lastPath = pathToRoot + obj.getClass().getSimpleName().toLowerCase() + "_object-" + Math.abs(new Random().nextLong()) + ".xml";
 
         XmlMapper xmlMapper = new XmlMapper();
@@ -197,6 +199,7 @@ public class serializDeserialiIO {
         xmlMapper.writeValue(new File(this.lastPath), obj);
         File file = new File(this.lastPath);
         assertNotNull(file);
+        return xmlMapper.writeValueAsString(obj);
     }
 
     public Client DeserializeXml(Client obj, String pathToFile) throws IOException {

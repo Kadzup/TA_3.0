@@ -2,6 +2,8 @@ package Models;
 
 import java.lang.*;
 import java.time.*;
+import java.util.Comparator;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -78,8 +80,14 @@ public class Client implements Comparable<Client>{
     }
 
     @Override
-    public int compareTo(Client o) {
-        return this.email.compareTo(o.email);
+    public int compareTo(Client client) {
+        if (this.bDay.getYear() == client.bDay.getYear()) {
+            return 0;
+        } else if (this.bDay.getYear() < client.bDay.getYear()) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 
     public static final class Builder {
