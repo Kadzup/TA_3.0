@@ -75,7 +75,7 @@ public class Interface{
 
         serializDeserialiIO jPars = new serializDeserialiIO();
         String path = "c://";
-        jPars.SserializeJson(worker, path);
+        jPars.SerializeJson(worker, path);
         worker = jPars.DeserializeJson(worker, "c://worker_object-3226343206514262163.json");
 
         jPars.SerializeXml(client, path);

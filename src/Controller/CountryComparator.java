@@ -17,4 +17,12 @@ public class CountryComparator implements Comparator<Country> {
             return -1;
         }
     }
+    public int compare(Country c1, String name) {
+        if (c1.getName() == name) {
+            return 0;
+        }
+        else {
+            return -1;
+        }
+    }
 }

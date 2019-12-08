@@ -3,6 +3,8 @@ package Models;
 import java.lang.*;
 import java.time.*;
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -88,6 +90,13 @@ public class Client implements Comparable<Client>{
         } else {
             return 1;
         }
+    }
+
+    public int compareTo(String email){
+        if (this.getEmail() == email) {
+            return 1;
+        } else
+            return -1;
     }
 
     public static final class Builder {

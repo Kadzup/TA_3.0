@@ -2,9 +2,9 @@ package Models;
 
 import java.lang.*;
 import java.time.*;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Worker {
     /**
      * First name of Worker
@@ -41,15 +41,6 @@ public class Worker {
      * Basic constructor of Worker object
      * */
     Worker(){
-        fName = "John";
-        lName = "Doe";
-        bDay = LocalDate.of(1999,11,12);
-
-        salary = 0.0f;
-        position = "Tester";
-
-        address = "Test Hometown";
-        phone = "+38(05)08-83-4011";
     }
 
     public Worker(String fName, String lName, LocalDate bDay, float salary, String position, String address, String phone) {
@@ -62,17 +53,27 @@ public class Worker {
         this.phone = phone;
     }
 
+    public Worker(Worker obj) {
+        this.fName = obj.fName;
+        this.lName = obj.lName;
+        this.bDay = obj.bDay;
+        this.salary = obj.salary;
+        this.position = obj.position;
+        this.address = obj.address;
+        this.phone = obj.phone;
+    }
+
     /**
      * GETTER / SETTER
      */
 
-    public String getFirstName(){
+    public String getfName(){
         return fName;
     }
-    public String getLastName(){
+    public String getlName(){
         return lName;
     }
-    public LocalDate getBirthDay(){
+    public LocalDate getbDay(){
         return bDay;
     }
     public float getSalary(){
@@ -88,18 +89,18 @@ public class Worker {
         return phone;
     }
 
-    @JsonIgnoreProperties
+    @JsonIgnore
     public int getYear(){
         return this.bDay.getYear();
     }
 
-    @JsonIgnoreProperties
+    @JsonIgnore
     public void changeName(String firstName, String lastName){
         fName = firstName;
         lName = lastName;
     }
 
-    @JsonIgnoreProperties
+    @JsonIgnore
     public float calculateSalary(float taxes){
         if(salary-taxes > 0){
             return salary-taxes;
@@ -109,18 +110,18 @@ public class Worker {
         }
     }
 
-    @JsonIgnoreProperties
+    @JsonIgnore
     public String getInfo(){
         return(
-                "First Name: " + getFirstName() +
-                "\nLast Name:" + getLastName() +
-                "\nBirth Day: " + getBirthDay() +
+                "First Name: " + getfName() +
+                "\nLast Name:" + getlName() +
+                "\nBirth Day: " + getbDay() +
                 "\nPosition: " + getPosition() +
                 "\nSalary: " + getSalary()
         );
     }
 
-    @JsonIgnoreProperties
+    @JsonIgnore
     public String howToFind(){
         return (
                 "Location: " + getAddress()+
@@ -128,9 +129,9 @@ public class Worker {
         );
     }
 
-    @JsonIgnoreProperties
+    @JsonIgnore
     public String getFullName(){
-        return (getFirstName() + " " + getLastName());
+        return (getfName() + " " + getlName());
     }
 
     public static final class Builder {

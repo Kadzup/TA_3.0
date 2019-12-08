@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class serializDeserialiIO {
-    private String lastPath;
+    public String lastPath;
 
     public serializDeserialiIO() {}
 
@@ -32,7 +32,7 @@ public class serializDeserialiIO {
     }
 
     /*  JSON parser BEGIN     */
-    public <T> String SserializeJson(T obj, String pathToRoot) {
+    public <T> String SerializeJson(T obj, String pathToRoot) {
         this.lastPath = pathToRoot + obj.getClass().getSimpleName().toLowerCase() + "_object-" + Math.abs(new Random().nextLong()) + ".json";
         File file = new File(this.lastPath);
         ObjectMapper mapper = new ObjectMapper();
@@ -188,7 +188,7 @@ public class serializDeserialiIO {
 
 
     /*  XML parser  BEGIN   */
-    public <T> String SerializeXml(T obj, String pathToRoot) throws IOException {
+    public <T> String SerializeXml(T obj, String pathToRoot){
         this.lastPath = pathToRoot + obj.getClass().getSimpleName().toLowerCase() + "_object-" + Math.abs(new Random().nextLong()) + ".xml";
 
         XmlMapper xmlMapper = new XmlMapper();
@@ -196,115 +196,150 @@ public class serializDeserialiIO {
         xmlMapper.registerModule(new JavaTimeModule());
         xmlMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        xmlMapper.writeValue(new File(this.lastPath), obj);
         File file = new File(this.lastPath);
-        assertNotNull(file);
-        return xmlMapper.writeValueAsString(obj);
+
+        try {
+            file.createNewFile();
+            xmlMapper.writeValue(file, obj);
+            System.out.println(xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj));
+            return xmlMapper.writeValueAsString(obj);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
-    public Client DeserializeXml(Client obj, String pathToFile) throws IOException {
-        if(pathToFile.isEmpty())
-            return obj;
-
+    public Client DeserializeXml(Client obj, String pathToFile){
         File file = new File(pathToFile);
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.registerModule(new JavaTimeModule());
         xmlMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        String xml = inputStreamToString(new FileInputStream(file));
-        Client newObj = xmlMapper.readValue(xml, Client.class);
-        assertNotNull(newObj);
-        return newObj;
+        try {
+            if(pathToFile.isEmpty())
+                return obj;
+
+            String xml = inputStreamToString(new FileInputStream(file));
+            Client newObj = xmlMapper.readValue(xml, Client.class);
+            return newObj;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return obj;
+        }
     }
 
-    public Country DeserializeXml(Country obj, String pathToFile) throws IOException {
-        if(pathToFile.isEmpty())
-            return obj;
-
+    public Country DeserializeXml(Country obj, String pathToFile){
         File file = new File(pathToFile);
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.registerModule(new JavaTimeModule());
         xmlMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        String xml = inputStreamToString(new FileInputStream(file));
-        Country newObj = xmlMapper.readValue(xml, Country.class);
-        assertNotNull(newObj);
-        return newObj;
+        try {
+            if(pathToFile.isEmpty())
+                return obj;
+
+            String xml = inputStreamToString(new FileInputStream(file));
+            Country newObj = xmlMapper.readValue(xml, Country.class);
+            return newObj;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return obj;
+        }
     }
 
-    public Location DeserializeXml(Location obj, String pathToFile) throws IOException {
-        if(pathToFile.isEmpty())
-            return obj;
-
+    public Location DeserializeXml(Location obj, String pathToFile){
         File file = new File(pathToFile);
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.registerModule(new JavaTimeModule());
         xmlMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        String xml = inputStreamToString(new FileInputStream(file));
-        Location newObj = xmlMapper.readValue(xml, Location.class);
-        assertNotNull(newObj);
-        return newObj;
+        try {
+            if(pathToFile.isEmpty())
+                return obj;
+
+            String xml = inputStreamToString(new FileInputStream(file));
+            Location newObj = xmlMapper.readValue(xml, Location.class);
+            return newObj;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return obj;
+        }
     }
 
-    public Order DeserializeXml(Order obj, String pathToFile) throws IOException {
-        if(pathToFile.isEmpty())
-            return obj;
-
+    public Order DeserializeXml(Order obj, String pathToFile){
         File file = new File(pathToFile);
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.registerModule(new JavaTimeModule());
         xmlMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        String xml = inputStreamToString(new FileInputStream(file));
-        Order newObj = xmlMapper.readValue(xml, Order.class);
-        assertNotNull(newObj);
-        return newObj;
+        try {
+            if(pathToFile.isEmpty())
+                return obj;
+
+            String xml = inputStreamToString(new FileInputStream(file));
+            Order newObj = xmlMapper.readValue(xml, Order.class);
+            return newObj;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return obj;
+        }
     }
 
-    public Service DeserializeXml(Service obj, String pathToFile) throws IOException {
-        if(pathToFile.isEmpty())
-            return obj;
-
+    public Service DeserializeXml(Service obj, String pathToFile){
         File file = new File(pathToFile);
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.registerModule(new JavaTimeModule());
         xmlMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        String xml = inputStreamToString(new FileInputStream(file));
-        Service newObj = xmlMapper.readValue(xml, Service.class);
-        assertNotNull(newObj);
-        return newObj;
+        try {
+            if(pathToFile.isEmpty())
+                return obj;
+
+            String xml = inputStreamToString(new FileInputStream(file));
+            Service newObj = xmlMapper.readValue(xml, Service.class);
+            return newObj;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return obj;
+        }
     }
 
-    public Tour DeserializeXml(Tour obj, String pathToFile) throws IOException {
-        if(pathToFile.isEmpty())
-            return obj;
-
+    public Tour DeserializeXml(Tour obj, String pathToFile){
         File file = new File(pathToFile);
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.registerModule(new JavaTimeModule());
         xmlMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        String xml = inputStreamToString(new FileInputStream(file));
-        Tour newObj = xmlMapper.readValue(xml, Tour.class);
-        assertNotNull(newObj);
-        return newObj;
+        try {
+            if(pathToFile.isEmpty())
+                return obj;
+
+            String xml = inputStreamToString(new FileInputStream(file));
+            Tour newObj = xmlMapper.readValue(xml, Tour.class);
+            return newObj;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return obj;
+        }
     }
 
-    public Worker DeserializeXml(Worker obj, String pathToFile) throws IOException {
-        if(pathToFile.isEmpty())
-            return obj;
-
+    public Worker DeserializeXml(Worker obj, String pathToFile){
         File file = new File(pathToFile);
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.registerModule(new JavaTimeModule());
         xmlMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        String xml = inputStreamToString(new FileInputStream(file));
-        Worker newObj = xmlMapper.readValue(xml, Worker.class);
-        assertNotNull(newObj);
-        return newObj;
+        try {
+            if(pathToFile.isEmpty())
+                return obj;
+
+            String xml = inputStreamToString(new FileInputStream(file));
+            Worker newObj = xmlMapper.readValue(xml, Worker.class);
+            return newObj;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return obj;
+        }
     }
     /*  XML parser  END   */
 }
